@@ -1,3 +1,5 @@
+
+
 persona = {
   "nombre": "Juan", 
   "edad": 25, 
@@ -74,3 +76,17 @@ print(frutas)  # Imprime {"manzana", "naranja", "pera"}
 
 frutas.clear()
 print(frutas)  # Imprime set()
+# tests
+persona = {
+  "id": 199,
+  "nombre": "Juan", 
+  "edad": 25, 
+  "b-day": "1998-01-01",
+  "telefono": "123456789",
+  "ciudad": "Madrid"
+  }
+
+print(persona.keys())
+print(persona.values())
+
+
