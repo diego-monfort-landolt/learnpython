@@ -37,3 +37,8 @@ print(age)
 address: str = 'Calle 123'
 address: int = 123
 print(type(address))
+
+nombre = "Juan"
+edad = 25
+altura = 1.75
+es_estudiante = True
