@@ -77,3 +77,33 @@ while numero_inicial <= 20:
             print('Buzz')
         else: 
             print(i)
+            
+            
+# Continue
+for i in range(10):
+
+    if i % 2 == 0:
+        continue
+    print(i)
+    
+# bucle for del 1 al 20
+for numero in range(1, 21):
+    if numero % 3 == 0:
+        continue  # Si el número es divisible por 3, saltamos a la siguiente iteración
+    print(numero)  # Imprimimos el número si no es divisible por 3
+    
+# una palabra pedirla al usuario
+
+palabra = input("Ingresa una palabra: ")
+# Bucle for para recorer cada letra 
+for letra in palabra:
+    if letra == 'a' or letra == 'e':
+        continue
+    
+    numeros = [-5, 3, -1, 7, -8, 10, -2]
+    # Bucle for para recorrer la lista
+for numero in numeros:
+    if numero < 0:
+        continue  # Saltar números negativos
+    print(f"Número positivo: {numero}")
+  
