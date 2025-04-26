@@ -139,7 +139,7 @@ root.resizable(False, False)
 
 # Optional: eigenes Icon setzen (.ico-Datei erforderlich)
 try:
-    root.iconbitmap("C:/Pfad/zum/icon.ico")  # Pfad ggf. anpassen
+    root.iconbitmap("reconocimiento.png")  # Pfad ggf. anpassen FOTO ANPASSSEN
 except:
     pass  # Falls Icon nicht gefunden wird, trotzdem starten
 
