@@ -6,3 +6,4 @@ print(lista[1]) # Imprime el segundo elemento de la lista
 
 
 print(type(1234)) # Imprime el tipo de dato de la cadena
+
