@@ -3,6 +3,7 @@ import shutil
 import subprocess
 import time
 from tkinter import messagebox, Tk
+import tkinter as tk
 
 def clear_teams_cache():
     try:
