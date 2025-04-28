@@ -34,4 +34,14 @@ def funcion2():
 funcion()  # Imprime 10
 funcion2()  # Imprime 20
 print(variable_global)  # Imprime 20
-print(variable_local)  # Genera un error, la variable no está definida en este alcance.
+# print(variable_local)  # Genera un error, la variable no está definida en este alcance.
+def calcular_media(*numeros):
+  suma = sum(numeros)
+  cantidad = len(numeros)
+  media = suma / cantidad
+  return media
+print("media: ", calcular_media(10, 20, 30, 40, 50))  # Imprime 3.0
+
+def sumar_3(x):
+    return x + 3
+print('Sumarle 3 a und numero: ', sumar_3(5))  # Imprime 8
