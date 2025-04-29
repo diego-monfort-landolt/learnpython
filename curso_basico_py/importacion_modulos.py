@@ -1,8 +1,8 @@
 import math
 from math import sqrt
 import mi_modulo
-import operaciones
-import utilidades
+import curso_basico_py.operaciones as operaciones
+import curso_basico_py.utilidades as utilidades
 
 
 resultado = math.sqrt(25)
