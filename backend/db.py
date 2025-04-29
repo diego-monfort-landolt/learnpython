@@ -36,3 +36,13 @@ def eliminar_usuario_por_id(usuario_id):
     conn.commit()
     conn.close()
 
+def actualizar_usuario(usuario_id, nombre, correo, edad):
+    conn = sqlite3.connect("usuarios.db")
+    cursor = conn.cursor()
+    cursor.execute("""
+        UPDATE usuarios
+        SET nombre = ?, correo = ?, edad = ?
+        WHERE id = ?
+    """, (nombre, correo, edad, usuario_id))
+    conn.commit()
+    conn.close()
