@@ -70,14 +70,12 @@ def eliminar_usuario():
         mostrar_usuarios()
         usuario_seleccionado = None
         btn_agregar.config(text="Agregar Usuario")
-
 def mostrar_usuarios():
     global usuarios
     usuarios = obtener_usuarios()
     lista_usuarios.delete(0, tk.END)
     for usuario in usuarios:
         lista_usuarios.insert(tk.END, f"{usuario[1]} | {usuario[2]} | {usuario[3]} años")
-
 def exportar_excel():
     ruta = filedialog.asksaveasfilename(defaultextension=".xlsx", filetypes=[("Excel files", "*.xlsx")])
     if not ruta:
@@ -96,7 +94,6 @@ def exportar_excel():
         messagebox.showinfo("Exportado", f"Archivo guardado en:\n{ruta}")
     except Exception as e:
         messagebox.showerror("Error", f"No se pudo guardar:\n{str(e)}")
-
 # Interfaz
 ventana = tk.Tk()
 ventana.title("Gestión de Usuarios")
