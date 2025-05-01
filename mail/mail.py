@@ -15,7 +15,7 @@ sender.ehlo()
 sender.starttls()
 sender.ehlo()
 
-# Hier kannst du deine Email-Adresse und dein Passwort eingeben
+# Hier kannst du deine Email-Adresse und dein Passwort eingeben - sicheres umgehen .env
 sender.login('youremailgmail.com, "TEST-PWD"')
 sender.send_message(mail);
 sender.close()
