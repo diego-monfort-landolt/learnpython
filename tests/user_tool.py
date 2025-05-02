@@ -2,144 +2,115 @@ import os
 import subprocess
 import tkinter as tk
 from tkinter import messagebox
-from tkinter import ttk
+import shutil
+import time
 
-# Funktion: Cache löschen
-def clear_cache():
-    # Neues Fenster mit Ladebalken öffnen
-    show_progress("🔄 Cache wird gelöscht", "Bitte warten, der Cache wird gelöscht. Dies kann einen Moment dauern.")
+# === Funktionen ===
+
+def clear_outlook_cache():
     try:
-        os.system("del /s /q %temp%\\*")
-        os.system("del /s /q C:\\Windows\\Temp\\*")
-        # Ladebalken fortsetzen
-        progress_bar['value'] = 100
-        window.update_idletasks()
-        messagebox.showinfo("Erfolg", "✅ Cache erfolgreich gelöscht.")
+        paths = [
+            os.path.expandvars(r"%LOCALAPPDATA%\Microsoft\Outlook"),
+            os.path.expandvars(r"%APPDATA%\Microsoft\Outlook"),
+            os.path.expandvars(r"%TEMP%")
+        ]
+        for path in paths:
+            if os.path.exists(path):
+                shutil.rmtree(path)
+        messagebox.showinfo("Erfolg", "✅ Outlook-Cache gelöscht.")
+    except Exception as e:
+        messagebox.showerror("Fehler", f"Fehler: {str(e)}")
+
+def create_outlook_profile_and_start():
+    try:
+        messagebox.showinfo("Profil", "Outlook-Profil wird erstellt.")
+        profile = "NewOutlookProfile"
+        subprocess.run(f"outlook.exe /Profile {profile}", shell=True)
+        time.sleep(10)
+        subprocess.run(f"start outlook.exe /profile {profile}", shell=True)
     except Exception as e:
         messagebox.showerror("Fehler", str(e))
-    finally:
-        window.destroy()  # Fenster schließen, wenn abgeschlossen
 
-# Funktion: DNS flush
 def flush_dns():
-    # Neues Fenster mit Ladebalken öffnen
-    show_progress("🔄 DNS-Cache wird geleert", "Bitte warten, der DNS-Cache wird geleert.")
     subprocess.run("ipconfig /flushdns", shell=True)
-    # Ladebalken fortsetzen
-    progress_bar['value'] = 100
-    window.update_idletasks()
-    messagebox.showinfo("Erledigt", "🌐 DNS-Cache wurde erfolgreich geleert.")
-    window.destroy()  # Fenster schließen
+    messagebox.showinfo("Erledigt", "DNS-Cache geleert.")
 
-# Funktion: Gruppenrichtlinien aktualisieren
 def update_gp():
-    # Neues Fenster mit Ladebalken öffnen
-    show_progress("🔄 Gruppenrichtlinien werden aktualisiert", "Bitte warten, Gruppenrichtlinien werden aktualisiert.")
     subprocess.run("gpupdate /force", shell=True)
-    # Ladebalken fortsetzen
-    progress_bar['value'] = 100
-    window.update_idletasks()
-    messagebox.showinfo("Erledigt", "🛠️ Gruppenrichtlinien erfolgreich aktualisiert.")
-    window.destroy()  # Fenster schließen
+    messagebox.showinfo("Erledigt", "Gruppenrichtlinien aktualisiert.")
 
-# Funktion: Neustart
-def restart_pc():
-    # Bestätigung, bevor Neustart durchgeführt wird
-    confirm = messagebox.askyesno("Neustart", "PC jetzt neustarten? Dies könnte einige Sekunden dauern.")
-    if confirm:
-        # Neues Fenster mit Ladebalken öffnen
-        show_progress("🔄 Neustart des PCs", "Der Computer wird neu gestartet. Speichern Sie Ihre Arbeit.")
-        os.system("shutdown /r /t 3")
-        progress_bar['value'] = 100
-        window.update_idletasks()
-        window.destroy()  # Fenster schließen
-
-# Funktion: Updates prüfen
 def check_updates():
-    # Neues Fenster mit Ladebalken öffnen
-    show_progress("🔄 Es wird nach Windows-Updates gesucht", "Bitte warten, wir prüfen auf Updates. Dies kann einige Minuten dauern.")
     subprocess.run("winget upgrade --all", shell=True)
-    # Ladebalken fortsetzen
-    progress_bar['value'] = 100
-    window.update_idletasks()
-    messagebox.showinfo("Updates", "📦 Updateprüfung abgeschlossen.")
-    window.destroy()  # Fenster schließen
+    messagebox.showinfo("Updates", "Updates geprüft.")
 
-# Funktion: Ladebalken und Fortschrittsbeschreibung anzeigen
-def show_progress(title, description):
-    global window, progress_bar
-    window = tk.Toplevel()  # Erstelle ein neues Fenster (Popup)
-    window.title(title)
-    window.geometry("300x150")
-    window.configure(bg="#f4f4f4")
-    
-    # Beschreibung hinzufügen
-    label = tk.Label(window, text=description, font=("Segoe UI", 10), bg="#f4f4f4", fg="#333")
-    label.pack(pady=10)
+def quit_app():
+    root.quit()
 
-    # Ladebalken
-    progress_bar = ttk.Progressbar(window, length=250, mode='indeterminate')
-    progress_bar.pack(pady=10)
-    progress_bar.start()  # Starten des Ladebalkens
+# === GUI ===
 
-    # Fenster im Vordergrund halten
-    window.attributes('-topmost', True)
-
-# GUI
 root = tk.Tk()
-root.title("🧰 Systemwartung")
-root.geometry("420x360")
-root.configure(bg="#f4f4f4")
+root.title("Systemwartung")
+root.geometry("500x500")
+root.resizable(False, False)
+root.configure(bg="white")
 
-# Immer im Vordergrund halten
-root.attributes('-topmost', True)
-
-# Optional: Icon setzen
+# Icon oben links setzen (optional)
 try:
-    root.iconbitmap("icon.ico")
+    root.iconbitmap("mein_icon.ico")  # Stelle sicher, dass mein_icon.ico im selben Ordner liegt
 except:
-    pass  # Falls kein Icon vorhanden
+    pass
 
-# Überschrift
-tk.Label(
-    root,
-    text="🧰 Systemwartung",
-    font=("Segoe UI", 16, "bold"),
-    bg="#f4f4f4",
-    fg="#333",
-    anchor="w"
-).pack(padx=20, pady=(15, 10), fill="x")
+# === Button-Funktion mit Hover ===
 
-# Stil für alle Buttons (abgerundete Ecken)
-def make_button(text, command):
-    return tk.Button(
+def create_button(text, command):
+    btn = tk.Button(
         root,
         text=text,
         command=command,
-        anchor="w",  # Links ausgerichtet (Icon + Text)
-        justify="left",
-        font=("Segoe UI", 11),
-        width=40,
-        bg="#e0e0e0",
-        fg="#111",
-        relief="solid",  # Relief auf "solid" gesetzt
-        bd=1,  # Minimale Dicke des Rahmens (1px)
-        padx=10,
-        pady=6,  # Vertikaler Abstand für größere Buttons
-        highlightthickness=0,  # Keine Umrandung um den Button
-        overrelief="sunken"
+        font=("Segoe UI Emoji", 11),
+        width=45,
+        height=2,
+        bg="#ffffff",         # Standard-Hintergrund
+        fg="#333333",         # Textfarbe
+        activeforeground="#000000",
+        relief="groove",
+        bd=2,
+        anchor="w",           # Text links im Button
+        padx=10
     )
 
-# Buttons platzieren
-make_button("🧹  Cache löschen", clear_cache).pack(pady=4)
-make_button("🌐  DNS-Cache leeren", flush_dns).pack(pady=4)
-make_button("🛠️  Gruppenrichtlinien aktualisieren", update_gp).pack(pady=4)
-make_button("📦  Windows Updates prüfen", check_updates).pack(pady=4)
+    # Hover-Farben
+    hover_bg = "#e6e6e6"
+    normal_bg = "#ffffff"
 
-# Trennlinie + Beenden-Button (abgerundet und mit Abstand oben)
-beenden_button = make_button("❌  Beenden", root.quit)
-beenden_button.config(bg="#f44336", fg="#fff", relief="raised")
-beenden_button.pack(pady=(20, 10))  # Mehr Abstand nach oben
+    # Hover-Events
+    def on_enter(e): btn['background'] = hover_bg
+    def on_leave(e): btn['background'] = normal_bg
+
+    btn.bind("<Enter>", on_enter)
+    btn.bind("<Leave>", on_leave)
+
+    btn.pack(pady=8, padx=20, anchor="w", fill="x")
+
+# === Buttons erstellen ===
+
+create_button("🧹  Outlook-Cache löschen", clear_outlook_cache)
+create_button("🌐  DNS-Cache leeren", flush_dns)
+create_button("🛠️  Gruppenrichtlinien aktualisieren", update_gp)
+create_button("📦  Windows Updates prüfen", check_updates)
+create_button("💼  Neues Outlook-Profil starten", create_outlook_profile_and_start)
+
+# === Beenden-Button mit eigenem Hover ===
+
+quit_btn = tk.Button(root, text="❌  Beenden", font=("Segoe UI", 11), width=20,
+                     bg="#d9534f", fg="white", command=quit_app)
+quit_btn.pack(pady=20)
+
+def on_enter_quit(e): quit_btn['bg'] = "#c9302c"
+def on_leave_quit(e): quit_btn['bg'] = "#d9534f"
+
+quit_btn.bind("<Enter>", on_enter_quit)
+quit_btn.bind("<Leave>", on_leave_quit)
 
 # Start GUI
 root.mainloop()
