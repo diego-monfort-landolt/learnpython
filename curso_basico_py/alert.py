@@ -40,7 +40,6 @@ def verificar_edad(edad):
         messagebox.showwarning("Advertencia", "Debes ser mayor de edad.")
     else:
         messagebox.showinfo("Éxito", "Acceso permitido.")
-
 # Crear ventana principal de Tkinter (necesario para mostrar los mensajes)
 root = tk.Tk()
 root.withdraw()  # Ocultar la ventana principal, solo usamos el messagebox
@@ -100,5 +99,4 @@ edad = int(input("Ingresa tu edad: "))
 
 # Llamar a la función con la edad ingresada
 verificar_edad(edad)
-
 root.quit()

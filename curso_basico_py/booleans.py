@@ -44,5 +44,3 @@ print('True:', True) # True
 print('not True:', not True) # False
 print('False:', False) # False
 print('not False:', not False) # True
-
-

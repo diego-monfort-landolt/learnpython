@@ -2,7 +2,6 @@ import os
 # limpiar la consola despues de ejecutar el programa
 os.system('clear')
 
-
 nota = 5
 if nota >= 9:
   print('Excelente')
