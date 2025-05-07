@@ -3,7 +3,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import os
 from dotenv import load_dotenv
-
 # -----------------------
 # .env laden (enthält E-Mail & Passwort)
 # -----------------------
@@ -17,7 +16,6 @@ recipient = "empfaenger@beispiel.de"
 # SMTP-Server von Ethereal (für Tests)
 smtp_server = "smtp.ethereal.email"
 smtp_port = 587
-
 # -----------------------
 # E-MAIL-INHALT (gestylt)
 # -----------------------
@@ -26,7 +24,6 @@ msg = MIMEMultipart("alternative")
 msg['Subject'] = "🚨 Dringende Mitteilung: Bitte sofort prüfen!"
 msg['From'] = f"Testsender <{smtp_user}>"
 msg['To'] = recipient
-
 # HTML-Inhalt
 html_content = """
 <html>
