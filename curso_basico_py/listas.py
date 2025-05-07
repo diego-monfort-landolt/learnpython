@@ -2,6 +2,7 @@ import os
 
 
 os.system('clear')
+
 frutas = ["manzana", "banana", "naranja"]
 
 print(frutas[0])  # Imprime "manzana"
@@ -52,3 +53,12 @@ matrix = [[1, 2], [3, 4], [5, 6]]
 print(matrix)
 
 print(matrix[0])  # Imprime [1, 2]
+
+# slicing en listas
+
+numeritos = [1, 2, 3, 4, 5]
+
+print(numeritos[1:4])  # Imprime [2, 3, 4]
+print(numeritos[:3])  # Imprime [1, 2, 3]
+print(numeritos[3:])  # Imprime [4, 5]
+print(numeritos[2:])  # Imprime [3, 4, 5]
