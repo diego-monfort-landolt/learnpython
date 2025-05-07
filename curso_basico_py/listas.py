@@ -1,3 +1,7 @@
+import os
+
+
+os.system('clear')
 frutas = ["manzana", "banana", "naranja"]
 
 print(frutas[0])  # Imprime "manzana"
@@ -40,3 +44,11 @@ print(frutas)  # Imprime ["uva", "pera", "manzana"]
 numeros = [1, 2, 3, 4, 5]
 cuadrados = [x ** 2 for x in numeros if x % 2 == 0]
 print(cuadrados)  # Imprime [4, 16]
+
+
+
+matrix = [[1, 2], [3, 4], [5, 6]]
+
+print(matrix)
+
+print(matrix[0])  # Imprime [1, 2]
