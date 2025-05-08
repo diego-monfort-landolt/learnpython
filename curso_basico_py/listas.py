@@ -62,3 +62,6 @@ print(numeritos[1:4])  # Imprime [2, 3, 4]
 print(numeritos[:3])  # Imprime [1, 2, 3]
 print(numeritos[3:])  # Imprime [4, 5]
 print(numeritos[2:])  # Imprime [3, 4, 5]
+
+# copia la lista
+print(numeritos[:])  # Imprime [1, 2, 3, 4, 5]
