@@ -34,3 +34,32 @@ def defaoult_arg_saludo(name='Diego'):
   print(f'Hola {name}')
   
 defaoult_arg_saludo()
+
+
+#con retornos de varios valores
+
+# def multiple_return_saludo():
+#   return 'Hola', 'Python', 'Diego'
+# greet, name = multiple_return_saludo()
+# print(greet)
+# print(name)
+
+# Con un numero variable de argumentos
+
+def variable_arg_greet(*names):
+  for name in names:
+    print(f'Hola {name}')
+variable_arg_greet('Python', 'Learning', 'Diego')
+
+# Con un numero variable de argumentos con palabra clave
+
+def variable_key_arg_greet(**names):
+  for key, value in names.items():
+    print(f'Hola {value} ({key})')
+    
+variable_key_arg_greet(
+  language='Python', 
+  name='Diego', 
+  age=34, 
+  alias='D' 
+  )
