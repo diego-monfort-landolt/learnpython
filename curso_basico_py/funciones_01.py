@@ -55,7 +55,7 @@ variable_arg_greet('Python', 'Learning', 'Diego')
 
 def variable_key_arg_greet(**names):
   for key, value in names.items():
-    print(f'Hola {value} ({key})')
+    print(f'{value} ({key})')
     
 variable_key_arg_greet(
   language='Python', 
