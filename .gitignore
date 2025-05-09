@@ -3,3 +3,9 @@
 *.txt
 docs/*.txt
 informe_seguridad.txt
+*.db
+*.sqlite
+*.sqlite3
+*.mdb
+*.accdb
+*.log
