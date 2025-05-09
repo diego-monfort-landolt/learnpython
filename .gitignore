@@ -1,1 +1,5 @@
 .env
+.txt
+*.txt
+docs/*.txt
+informe_seguridad.txt
