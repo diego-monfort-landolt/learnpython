@@ -1,11 +1,7 @@
-.env
-.txt
-*.txt
-docs/*.txt
-informe_seguridad.txt
-*.db
-*.sqlite
-*.sqlite3
-*.mdb
-*.accdb
-*.log
+.env                  # ignoriert jede Datei mit genau diesem Namen
+.txt                  # ignoriert eine Datei mit dem exakten Namen ".txt" (wahrscheinlich nicht, was du willst)
+*.txt                 # ignoriert ALLE .txt-Dateien (egal wo)
+docs/*.txt            # ignoriert nur .txt-Dateien im Ordner "docs/"
+informe_seguridad.txt # ignoriert genau diese Datei
+*.db, *.sqlite, ...   # ignoriert Datenbanken
+*.log                 # ignoriert Log-Dateien
