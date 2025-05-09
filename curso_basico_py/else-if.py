@@ -19,21 +19,31 @@
     
 import os
 
-# Terminal löschen (Windows oder Linux/macOS)
+# Limpiar terminal
 os.system('cls' if os.name == 'nt' else 'clear')
 
 print("💰 Bienvenido al analizador de ingresos 💰")
 print("--------------------------------------------------")
 
-# User-Eingabe
+# Entrada del usuario
 try:
     ingreso_manual = float(input("Ingresa tu ingreso mensual estimado (€): "))
     valor = '€'
     print(f"\nIngreso registrado: {ingreso_manual:.2f}{valor}\n")
 
-    # Bewertung
+    # Evaluación de ingresos
     if ingreso_manual >= 10000:
-        print("🔥 Estás en modo millonario. ¿Nos invitas algo?")
+        print("🔥 Estás en modo MILLONARIO. ¿Nos invitas algo?")
+        
+        celebracion = input("¿Vas a celebrarlo? (sí/no): ").strip().lower()
+
+        if celebracion in ['sí', 'si', 's']:
+            print("\n🍾 Sacando el champán...")
+            print("🥂 Un poco de vodka para el estilo...")
+            print("💃 ¡Una noche de discoteca te espera! 🎉")
+        else:
+            print("\n😔 Entiendo... a veces el dinero no lo es todo.")
+    
     elif ingreso_manual >= 6000:
         print("💎 Eres un PRO! Vives con estilo.")
     elif ingreso_manual >= 3000:
@@ -44,6 +54,6 @@ try:
         print("😬 Uff... Algo entra, pero ajusta el cinturón.")
     else:
         print("💀 SOS pobre... perdona... busca soluciones.")
+
 except ValueError:
     print("❌ Entrada no válida. Por favor, ingresa un número.")
-
