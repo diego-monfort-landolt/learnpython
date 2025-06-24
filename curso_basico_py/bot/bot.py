@@ -19,7 +19,7 @@ def preis_abfragen():
     try:
         seite = requests.get(URL, headers=headers, timeout=10)
         soup = BeautifulSoup(seite.text, 'html.parser')
-
+        
         # HINWEIS: Dies ist ein Platzhalter! Im Browser den aktuellen CSS-Selektor prüfen.
         preis_element = soup.find('div', {'class': 'css-12ujz79'})  
         if preis_element:
@@ -30,7 +30,6 @@ def preis_abfragen():
     except Exception as e:
         print(f"Fehler bei Preisabfrage: {e}")
     return None
-
 def benachrichtigen(preis, richtung):
     nachricht = f"🚨 BTC ist {richtung} {preis:.2f} EUR"
     try:
@@ -41,7 +40,6 @@ def benachrichtigen(preis, richtung):
         print(nachricht)
     except Exception as e:
         print(f"Fehler beim Senden: {e}")
-
 while True:
     preis = preis_abfragen()
     if preis:
