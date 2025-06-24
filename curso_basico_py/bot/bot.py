@@ -48,4 +48,3 @@ while True:
         elif preis <= UNTERGRENZE:
             benachrichtigen(preis, "gefallen unter 80.000")
     sleep(5)
-
