@@ -18,8 +18,7 @@ def preis_abfragen():
     headers = {'User-Agent': 'Mozilla/5.0'}
     try:
         seite = requests.get(URL, headers=headers, timeout=10)
-        soup = BeautifulSoup(seite.text, 'html.parser')
-        
+        soup = BeautifulSoup(seite.text, 'html.parser')  
         # HINWEIS: Dies ist ein Platzhalter! Im Browser den aktuellen CSS-Selektor prüfen.
         preis_element = soup.find('div', {'class': 'css-12ujz79'})  
         if preis_element:

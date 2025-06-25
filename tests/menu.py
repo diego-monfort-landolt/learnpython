@@ -2,7 +2,6 @@ import os
 
 # Limpiar pantalla
 os.system('cls' if os.name == 'nt' else 'clear')
-
 # Mostrar menú
 print('Menú')
 print('1- Pizza de la casa')
@@ -14,7 +13,6 @@ print('6- Menú especial: 1 Pizza y 1 bebida')
 
 # Capturar la elección del usuario
 opcion = input('Por favor, elige una opción (1-6): ')
-
 # Conversión de tipo
 try:
     opcion = int(opcion)  # Convertir la entrada a número
@@ -26,19 +24,15 @@ try:
     else:
         print('Opción no válida')
         exit()
-
     # Pregunta adicional sobre la bebida
     bebida = input('¿Deseas una bebida con tu pizza? (si/no): ').strip().lower()
-
     if bebida == 'si':
         print('Por favor, elige tu bebida:')
         print('1 - Cola')
         print('2 - Fanta')
         print('3 - Cerveza')
-
         # Capturar la elección de bebida
         bebida_opcion = input('Tu elección (1-3): ').strip()
-        
         # Validación de la entrada
         if bebida_opcion == '1':
             print('Cola añadida a tu pedido.')
@@ -52,6 +46,5 @@ try:
         print('Ok, sin bebida.')
     else:
         print('Entrada no válida, por favor responde con "sí" o "no".')
-
 except ValueError:
     print('Por favor, introduce un número válido.')
