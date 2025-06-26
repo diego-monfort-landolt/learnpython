@@ -16,7 +16,6 @@ opcion = input('Por favor, elige una opción (1-6): ')
 # Conversión de tipo
 try:
     opcion = int(opcion)  # Convertir la entrada a número
-
     if opcion in [1, 2, 3, 4, 5, 6]:
         print('Preparando la pizza...')
         if opcion == 6:
