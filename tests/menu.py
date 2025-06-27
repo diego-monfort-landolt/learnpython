@@ -1,5 +1,4 @@
 import os
-
 # Limpiar pantalla
 os.system('cls' if os.name == 'nt' else 'clear')
 # Mostrar menú
