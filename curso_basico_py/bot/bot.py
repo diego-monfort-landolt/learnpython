@@ -9,11 +9,9 @@ URL = "https://www.binance.com/es/price/bitcoin"
 OBERGRENZE = 98000
 UNTERGRENZE = 80000
 load_dotenv()
-
 EMAIL = os.getenv("ALERT_EMAIL")
 PASSWORT = os.getenv("ALERT_PASS")
 SMTP_SERVER = os.getenv("SMTP_SERVER")
-
 def preis_abfragen():
     headers = {'User-Agent': 'Mozilla/5.0'}
     try:
