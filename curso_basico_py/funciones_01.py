@@ -34,8 +34,6 @@ def defaoult_arg_saludo(name='Diego'):
   print(f'Hola {name}')
   
 defaoult_arg_saludo()
-
-
 #con retornos de varios valores
 
 # def multiple_return_saludo():
