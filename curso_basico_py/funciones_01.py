@@ -23,7 +23,6 @@ def arg_saludo(name):
 arg_saludo('Diego')
 
 # Con argumentos
-
 def arg_saludo(saludo, name):
   print(f'{saludo}, {name}')
   
@@ -43,7 +42,6 @@ defaoult_arg_saludo()
 # print(name)
 
 # Con un numero variable de argumentos
-
 def variable_arg_greet(*names):
   for name in names:
     print(f'Hola {name}')
