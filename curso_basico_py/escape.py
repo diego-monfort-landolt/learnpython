@@ -1,7 +1,6 @@
 curso = "aprender mas en \"Python\""
 print(curso)
 # comillas dobles en comillas dobles 
-
 # \\ 
 # \n new line
 # \t tab  
