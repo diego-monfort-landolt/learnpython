@@ -30,7 +30,6 @@ def spiel():
             if frage is None:
                 print("Fehler beim Abrufen der Frage.")
                 break
-
             print("Frage:")
             print(frage)
             for i, ans in enumerate(antworten):
