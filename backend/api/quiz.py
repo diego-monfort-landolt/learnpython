@@ -50,6 +50,5 @@ def spiel():
 
     except KeyboardInterrupt:
         print("\n🛑 Spiel beendet. Dein Punktestand ist: ", punkte)
-
 if __name__ == "__main__":
     spiel()
