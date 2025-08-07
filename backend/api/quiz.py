@@ -49,7 +49,7 @@ def spiel():
             print(f"🔢 Punktestand: {punkte}\n")
 
     except KeyboardInterrupt:
-        print("\n🛑 Spiel beendet. Dein Punktestand: ", punkte)
+        print("\n🛑 Spiel beendet. Dein Punktestand ist: ", punkte)
 
 if __name__ == "__main__":
     spiel()
