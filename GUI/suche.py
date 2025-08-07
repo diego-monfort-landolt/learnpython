@@ -7,7 +7,6 @@ import re
 
 # Temporärer Verlauf (nur im RAM)
 verlauf = []
-
 def finde_aehnliche_suchen(suchbegriff):
     if not verlauf:
         return []
