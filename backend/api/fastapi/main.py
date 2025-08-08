@@ -18,7 +18,6 @@ def index():
 def mostrar_usuario(id: int):
   return {"data": id}
 
-
 @app.post("/users/")
 def mostrar_usuario(user: User):
   return {"message": f"User: {user.name} is registred"}
