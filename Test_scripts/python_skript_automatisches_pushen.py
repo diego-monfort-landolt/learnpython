@@ -2,6 +2,7 @@ import os
 import datetime
 import subprocess
 import time
+import glob
 
 REPO_PATH = r"C:\Users\lando\Desktop\tests\pythonCurso"
 
@@ -22,12 +23,26 @@ def push_changes():
     """Änderungen ins Remote-Repo pushen."""
     git_run(["push"])
 
+def delete_dummy_files():
+    """Alle Dummy-Dateien löschen und committen."""
+    pattern = os.path.join(REPO_PATH, "dummy_*.txt")
+    files = glob.glob(pattern)
+    if not files:
+        print("Keine Dummy-Dateien zum Löschen gefunden.")
+        return
+    # Dateien löschen
+    for file in files:
+        os.remove(file)
+ 
+    git_run(["commit", "-m", "Script wurde nun erfolgreich beendet"])
+    push_changes()
+
 def main():
     for i in range(1, 13):  # 12 Commits
         make_commit(i)
         time.sleep(2)  # kleine Pause zwischen den Commits
     push_changes()
-    print(f"Fertig: {datetime.date.today()} – 12 Commits + Push ausgeführt.")
+    delete_dummy_files()
 
 if __name__ == "__main__":
     main()
