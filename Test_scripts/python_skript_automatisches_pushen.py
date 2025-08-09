@@ -3,6 +3,7 @@ import datetime
 import subprocess
 import time
 import glob
+import schedule
 
 REPO_PATH = r"C:\Users\lando\Desktop\tests\pythonCurso"
 
@@ -30,19 +31,26 @@ def delete_dummy_files():
     if not files:
         print("Keine Dummy-Dateien zum Löschen gefunden.")
         return
-    # Dateien löschen
     for file in files:
         os.remove(file)
- 
     git_run(["commit", "-m", "Script wurde nun erfolgreich beendet"])
     push_changes()
 
 def main():
+    print(f"Starte Commit-Prozess um {datetime.datetime.now()}")
     for i in range(1, 13):  # 12 Commits
         make_commit(i)
-        time.sleep(2)  # kleine Pause zwischen den Commits
+        time.sleep(2)
     push_changes()
     delete_dummy_files()
+    print(f"Prozess beendet um {datetime.datetime.now()}")
+
+# Zeitplan festlegen
+schedule.every().day.at("09:00").do(main)
+schedule.every().day.at("16:00").do(main)
 
 if __name__ == "__main__":
-    main()
+    print("Script läuft und wartet auf 09:00 und 16:00 Uhr...")
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
