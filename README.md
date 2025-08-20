@@ -11,3 +11,15 @@ Skripte und kleine Programme.
 Notizen, Tutorials und Ressourcen.
 
 Herausforderungen und Übungen, die meine Fähigkeiten testen.
+
+
+
+# Curso Gestion de documentacion
+**Nergita** 
+*Cursivas*
+`$comando`
+
+```
+$ Start the Script
+$ please add the last commit to git
+```
