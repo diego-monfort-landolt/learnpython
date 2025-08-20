@@ -12,11 +12,6 @@ Notizen, Tutorials und Ressourcen.
 
 Herausforderungen und Übungen, die meine Fähigkeiten testen.
 
-
-
-# Curso Gestion de documentacion
-**Nergita** 
-*Cursivas*
 `$comando`
 
 ```
