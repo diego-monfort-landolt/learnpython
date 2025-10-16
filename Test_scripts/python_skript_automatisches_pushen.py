@@ -4,7 +4,7 @@ import subprocess
 import time
 import glob
 
-REPO_PATH = r"C:\Users\lando\Desktop\tests\pythonCurso"
+REPO_PATH = r"C:\Users\lando\OneDrive\Desktop\tests\pythonCurso"
 
 def git_run(args):
     """Git-Befehle mit Fehlerprüfung ausführen."""
