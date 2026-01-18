@@ -6,7 +6,7 @@ import subprocess
 
 # ==== Konfiguration ====
 APP_NAME = "NeonShell"  # <— hier einfach ändern
-SHOW_MATRIX_INTRO = True  # Intro mit „Matrix“-Effekt (abschaltbar)
+SHOW_MATRIX_INTRO = False  # Intro mit „Matrix“-Effekt (abschaltbar)
 
 # ANSI-Farben
 RESET = "\033[0m"
@@ -201,4 +201,3 @@ if __name__ == '__main__':
         main()
     except KeyboardInterrupt:
         print(f"\n{RED}Beendet durch Benutzer.{RESET}")
-
