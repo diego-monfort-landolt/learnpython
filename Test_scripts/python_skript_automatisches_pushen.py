@@ -29,7 +29,7 @@ def delete_dummy_files():
     files = glob.glob(pattern)
     if not files:
         print("Keine Dummy-Dateien zum Löschen gefunden.")
-        return
+        returnñ
     # Dateien löschen
     for file in files:
         os.remove(file)
