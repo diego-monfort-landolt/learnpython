@@ -186,7 +186,6 @@ class MedicalDashboardApp:
         self.ax.add_artist(centre_circle)
         self.ax.axis("equal")
         self.canvas.draw()
-
     # -----------------------------
     # Daten in TXT speichern
     # -----------------------------
