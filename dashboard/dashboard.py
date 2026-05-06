@@ -26,8 +26,8 @@ class MedicalDashboardApp:
 
         self._build_ui()
         self._load_from_file()
-        self._refresh_list()
-        self._update_donut()
+        self._apply_search()  # wichtig: Filter direkt anwenden
+        self._update_donut(filtered_only=True)
 
     # -----------------------------
     # UI Aufbau
@@ -102,6 +102,21 @@ class MedicalDashboardApp:
         search_entry = ttk.Entry(search_frame, textvariable=self.search_var)
         search_entry.pack(fill="x", pady=3)
 
+        # -----------------------------
+        # NEUER GESCHLECHTER-FILTER
+        # -----------------------------
+        ttk.Label(search_frame, text="Filter nach Geschlecht:").pack(anchor="w", pady=(5, 0))
+        self.gender_filter_var = tk.StringVar(value="Alle")
+        gender_filter_combo = ttk.Combobox(
+            search_frame,
+            textvariable=self.gender_filter_var,
+            values=["Alle", "Mann", "Frau"],
+            state="readonly",
+            width=27
+        )
+        gender_filter_combo.pack(fill="x", pady=3)
+        gender_filter_combo.bind("<<ComboboxSelected>>", lambda e: self._apply_search())
+
         list_frame = ttk.LabelFrame(left_frame, text="Einträge", padding=10)
         list_frame.pack(fill="both", expand=True, pady=(10, 0))
 
@@ -145,25 +160,32 @@ class MedicalDashboardApp:
         self.entries.append(entry)
         self._save_to_file()
         self._apply_search()
-        self._update_donut()
+        self._update_donut(filtered_only=True)
 
         self.name_var.set("")
         self.category_combo.current(0)
         self.gender_combo.current(0)
 
     # -----------------------------
-    # Suche anwenden
+    # Suche anwenden (NEU)
     # -----------------------------
     def _apply_search(self):
         query = self.search_var.get().strip().lower()
-        if not query:
-            self.filtered_entries = list(self.entries)
-        else:
-            self.filtered_entries = [
-                e for e in self.entries
-                if query in e["name"].lower() or query in e["category"].lower()
-            ]
+        gender_filter = self.gender_filter_var.get()
+
+        # Grundfilter: Textsuche
+        filtered = [
+            e for e in self.entries
+            if (query in e["name"].lower() or query in e["category"].lower())
+        ]
+
+        # Geschlechterfilter anwenden
+        if gender_filter != "Alle":
+            filtered = [e for e in filtered if e["gender"] == gender_filter]
+
+        self.filtered_entries = filtered
         self._refresh_list()
+        self._update_donut(filtered_only=True)
 
     # -----------------------------
     # Liste aktualisieren
@@ -175,17 +197,20 @@ class MedicalDashboardApp:
             self.listbox.insert(tk.END, text)
 
     # -----------------------------
-    # Donut-Chart aktualisieren
+    # Donut-Chart aktualisieren (NEU)
     # -----------------------------
-    def _update_donut(self):
+    def _update_donut(self, filtered_only=False):
         self.ax.clear()
-        if not self.entries:
+
+        data = self.filtered_entries if filtered_only else self.entries
+
+        if not data:
             self.ax.text(0.5, 0.5, "Keine Daten", ha="center", va="center")
             self.ax.axis("off")
             self.canvas.draw()
             return
 
-        categories = [e["category"] for e in self.entries]
+        categories = [e["category"] for e in data]
         counts = Counter(categories)
 
         labels = list(counts.keys())
@@ -231,7 +256,7 @@ class MedicalDashboardApp:
 
             self._save_to_file()
             self._apply_search()
-            self._update_donut()
+            self._update_donut(filtered_only=True)
 
             messagebox.showinfo("Import erfolgreich", f"{len(df)} Einträge wurden importiert.")
 
