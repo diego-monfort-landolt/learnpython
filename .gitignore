@@ -5,3 +5,14 @@ docs/*.txt            # ignoriert nur .txt-Dateien im Ordner "docs/"
 informe_seguridad.txt # ignoriert genau diese Datei
 *.db, *.sqlite, ...   # ignoriert Datenbanken
 *.log                 # ignoriert Log-Dateien
+
+
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+node_watch_alerts.jsonl
+*.log
+dist/
+build/
