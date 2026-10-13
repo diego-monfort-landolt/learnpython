@@ -38,7 +38,7 @@ def delete_dummy_files():
     push_changes()
 
 def main():
-    for i in range(1, 90):  # 20 Commits
+    for i in range(1, 30):  # 20 Commits
         make_commit(i)
         time.sleep(2)  # kleine Pause zwischen den Commits
     push_changes()
